@@ -229,7 +229,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/news/2021/03/03/article11/" class="post-title-link" itemprop="url">article11</a>
+            <a href="/news/2021/03/03/article11/" class="post-title-link" itemprop="url">职场四精英面试题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -242,6 +242,13 @@
 
       <time title="Created: 2021-03-03 00:54:39" itemprop="dateCreated datePublished" datetime="2021-03-03T00:54:39+08:00">2021-03-03</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-03-04 18:55:09" itemprop="dateModified" datetime="2021-03-04T18:55:09+08:00">2021-03-04</time>
+      </span>
 
   
 </div>
@@ -253,7 +260,136 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h3 id="涂鸦智能（西法）"><a href="#涂鸦智能（西法）" class="headerlink" title="涂鸦智能（西法）"></a><strong>涂鸦智能（西法）</strong></h3><ul>
+<li>jsbridge的实现原理</li>
+<li>mvvm如何拆分vm，拆分的依据是什么</li>
+<li>多线程如何实现同时读读，读写互斥</li>
+<li>项目中运用到的觉得有技术深度的点</li>
+<li>在图片展示的过程中CPU与GPU各自负责什么工作</li>
+<li>怎样设计一套缓存</li>
+<li>rxswift里的map等函数用法，题目忘记了</li>
+</ul>
+<h3 id="爱奇艺（德叔）"><a href="#爱奇艺（德叔）" class="headerlink" title="爱奇艺（德叔）"></a>爱奇艺（德叔）</h3><ul>
+<li><p>函数调用时，栈怎么运作的；线程 与 线程 之间，栈是 共享的，还是每个线程有自己独立的栈，堆呢？</p>
+</li>
+<li><p>gcd 与 线程 的关系</p>
+</li>
+<li><p>block里面 把__weak 转成 __strong 那个对象就不会释放吗</p>
+</li>
+<li><p>程序耗电时，怎么设计 监控程序怎么耗电的</p>
+</li>
+<li><p>程序崩溃的时候，怎么设计 获取去获取 崩溃信息，发生崩溃之后，app退出前</p>
+</li>
+<li><p>iOS里，引用计数 存在哪里的，几种情况？</p>
+</li>
+<li><p>图文混排哪些方案</p>
+</li>
+<li><p>有1000桶水，其中一桶有毒；一只猪来试喝水，每只猪只能喝一次，喝到有毒的水会立刻挂掉，可以将每桶水混起来，至少要几只猪，才能找到有毒的那桶水</p>
+</li>
+<li><p>接上提，如果一只猪不是只能喝一次，而是每隔15分钟能喝一次，喝到有毒的也会立刻挂掉，要在1小时内找出那桶有毒的水，至少要多少只猪</p>
+</li>
+<li><p>冒泡，快速排序</p>
+</li>
+<li><p>一个数比如657，将每个位置上的数重新排列，找出，大于当前数的，最小的那个：675，重新排列：675，567，576，765，756，大于 657 的最小的数是 675</p>
+</li>
+<li><p>有一个矩阵，0表示水，1表示陆地，1的上下左右全是水的时候，表示一个岛屿，伪代码找出矩阵中岛屿个数，几个1相邻时看作一个岛屿：</p>
+<ul>
+<li>示例</li>
+</ul>
+</li>
+<li><p>给定两个正整数row, col ，生成一个包含 1 到 row*col 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵</p>
+</li>
+<li><p>javascriptCore 与 原生交互原理</p>
+</li>
+</ul>
+<h3 id="海康一面"><a href="#海康一面" class="headerlink" title="海康一面"></a>海康一面</h3><ol>
+<li>runtime应用</li>
+<li>runloop使用过程中要注意什么</li>
+<li>怎样保证读写安全</li>
+<li>mvvm在项目中的应用</li>
+<li>iOS响应链</li>
+<li>UIView动画、masonry为什么不会有循环应用的问题</li>
+</ol>
+<h3 id="海康二面"><a href="#海康二面" class="headerlink" title="海康二面"></a>海康二面</h3><ol>
+<li>masonry为什么不会有循环引用的问题</li>
+<li>runloop和autoreleasePool的关系</li>
+<li>GCD group、semaphore</li>
+<li>优化相关的工作做了哪些</li>
+<li>SDWebImage实现原理</li>
+<li>js与原生交互实现原理</li>
+<li>事件响应链</li>
+<li>怎么扩大button的点击范围？hitTest做了什么工作？</li>
+</ol>
+<h3 id="e签宝"><a href="#e签宝" class="headerlink" title="e签宝"></a>e签宝</h3><ol>
+<li>crash防护</li>
+<li>通知为什么会引起崩溃</li>
+<li>Native和H5交互的原理</li>
+<li>KVO原理（OC和swift各自怎么实现）</li>
+<li>父类和子类的析构函数调用顺序（init方法？）</li>
+<li>APP之间的通信方式</li>
+</ol>
+<h3 id="考拉海购"><a href="#考拉海购" class="headerlink" title="考拉海购"></a>考拉海购</h3><ul>
+<li>直播里面的业务怎么解藕的，不同的模块之间如何通信的</li>
+<li>各种锁性能有没有做过对比</li>
+<li>点击事件的原理讲一下（讲了一波响应链）</li>
+<li>block有几种类型，对基本数据类型和对象类型分别是如何引用的。如果要修改基本数据类型的变量呢？</li>
+<li>BaseRequest里面</li>
+<li>HFBasePageRequest</li>
+<li>引用计数器原理</li>
+<li>Category如何加载的，用过这个吗？有没有遇到什么问题</li>
+<li>Mach-O文件里有哪些东西，为什么要区分Segment，Section？</li>
+<li>HTTPS为什么是安全的</li>
+<li>Runloop有哪些Mode，源码对CommonModes中是如何存储的（没说出来）</li>
+<li>如何自己设计一个类似NSNotification的通知？</li>
+<li>不用dispatch_once，如何自己设计</li>
+<li>直播间点赞，主态-客态，客态-客态间有哪些需要注意的点</li>
+<li>工作中你是如何推进项目的</li>
+</ul>
+<h2 id="微拍堂"><a href="#微拍堂" class="headerlink" title="微拍堂"></a>微拍堂</h2><ul>
+<li>如何Hook App中所有请求的地址</li>
+<li>如何Hook三方SDK提供的block方法</li>
+<li>Extension和Category的区别</li>
+<li>Runloop平时用到吗？</li>
+<li>GCD平时用到哪些</li>
+<li>如何实现按顺序执行多个请求</li>
+<li>AutoreleasePool，在pop的时候是如何找到哨兵对象的。</li>
+<li>MVP，MVVM说一下</li>
+<li>iOS异步渲染</li>
+</ul>
+<h2 id="手淘特价版"><a href="#手淘特价版" class="headerlink" title="手淘特价版"></a><strong>手淘特价版</strong></h2><ul>
+<li>让A，B两个线程交错打印</li>
+<li>举一个死锁的例子</li>
+<li>SideTable格式再看一下</li>
+<li>两个VC：a，b。说一下从a跳转到b时，生命周期的过程。</li>
+<li>接上题：如果是a addChildVC b呢？</li>
+<li>一面笔试</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>在子线程中使用performSelector:withObject:afterDelay方法，使用完毕后，需要手动销毁线程吗？</li>
+<li>对象A被多个weak指针所指向。若持有其中一个weak指针的对象B被释放，A在执行dealloc方法时，让对应weak释放，会造成野指针崩溃吗？</li>
+<li>barrier不能对dispath_global_queue生效</li>
+<li>静态库 与 动态库 区别</li>
+<li>fishhook探索iOS应用编译及启动的原理</li>
+<li>子线程 runloop 是默认不开启的，子线程时使用 autorelease 局部变量，是怎么释放的？</li>
+<li>西法1</li>
+<li>方法替换，会替换掉父类的方法么？会影响其他类么？</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.notion.so/79cf11bca09642678c027bc4ae9fefd2">边锋</a></p>
+<h2 id="天猫好房"><a href="#天猫好房" class="headerlink" title="天猫好房"></a>天猫好房</h2><ul>
+<li>你做过最有难度的事？</li>
+<li>你做过最有挑战的事？</li>
+<li>工作中做过那些事？带来了哪些结果？</li>
+<li>RXSwift的优势在哪？业务中哪些场景用到了？</li>
+<li>RTMP，FLV，h264，hls这些协议有啥区别</li>
+<li>说一下isa指针</li>
+<li>Swift和OC相比，有什么优势和劣势。</li>
+</ul>
+<h2 id="哈啰单车"><a href="#哈啰单车" class="headerlink" title="哈啰单车"></a>哈啰单车</h2><ul>
+<li>互斥锁，自旋锁的区别</li>
+<li>SDWebImage了解过么</li>
+<li>GCD在项目中用了哪些使用场景</li>
+</ul>
+
       
     </div>
 

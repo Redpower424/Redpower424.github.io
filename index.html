@@ -260,7 +260,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-03-09 15:25:00 / Modified: 15:26:18" itemprop="dateCreated datePublished" datetime="2021-03-09T15:25:00+08:00">2021-03-09</time>
+      <time title="Created: 2021-03-09 15:25:00 / Modified: 16:44:25" itemprop="dateCreated datePublished" datetime="2021-03-09T15:25:00+08:00">2021-03-09</time>
     </span>
 
   
@@ -277,13 +277,12 @@
 <ol>
 <li>第一步，借助 system_profiler，在 terminal 中输入 指令<code>system_profiler SPUSBDataType</code>，可以获取到当前 mac 上所有 USB 信息，找到你的设备，可以看到对应的 Serial Number</li>
 </ol>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43164536-df20-4501-b8b9-e2596ff50bc7/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43164536-df20-4501-b8b9-e2596ff50bc7/Untitled.png"></p>
+<p><img src="/images/20210309_1.png"></p>
 <ol start="2">
-<li>第二步， 筛选出我们需要的 Serial Number 信息，修改上面的指令<br><code>system_profiler SPUSBDataType | sed -n -E &#39;s/Serial Number: (.+)/\\1/1p&#39;</code>，打印结果如下，可以很轻松的拿到我们需要的设备序列号.<br>[image:27A5CA33-14B0-4406-9486-FD3CBABDB242-369-0000CED9AF7A88B1/744D63EC-0FAE-48B6-A92C-CAC427E8732F.png]</li>
-</ol>
-<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93616423-64d1-4462-b0c5-ca3beff9e30d/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93616423-64d1-4462-b0c5-ca3beff9e30d/Untitled.png"></p>
-<ol start="3">
-<li>第三步，快捷启动。我们不可能每次都敲这么一长串命令，关键也不好记，为了操作方便，我们可以命令加个 alias</li>
+<li><p>第二步， 筛选出我们需要的 Serial Number 信息，修改上面的指令<br><code>system_profiler SPUSBDataType | sed -n -E &#39;s/Serial Number: (.+)/\\1/1p&#39;</code>，打印结果如下，可以很轻松的拿到我们需要的设备序列号.<br><img src="/images/20210309_2.png"></p>
+</li>
+<li><p>第三步，快捷启动。我们不可能每次都敲这么一长串命令，关键也不好记，为了操作方便，我们可以命令加个 alias</p>
+</li>
 </ol>
 <ul>
 <li>编辑 .bash_profile：<br><code>vim ~/.bash_profile</code></li>

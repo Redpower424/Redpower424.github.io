@@ -187,6 +187,20 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/yourname" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fa fa-address-card fa-fw"></i></a>
+      </span>
+  </div>
 
 
 
@@ -213,6 +227,88 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://redpower424.github.io/news/2021/03/09/%E8%8E%B7%E5%8F%96%20UUID%20%E7%9A%84%E5%B0%8F%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Redpower">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redpower">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/news/2021/03/09/%E8%8E%B7%E5%8F%96%20UUID%20%E7%9A%84%E5%B0%8F%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">获取 UUID 的小脚本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-09 15:25:00 / Modified: 15:26:18" itemprop="dateCreated datePublished" datetime="2021-03-09T15:25:00+08:00">2021-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在日常开发测试过程中经常会需要获取设备的 UUID，正常我们会把设备连上电脑，在 iTunes 里去招设备序列号然后复制出来。这样操作虽然也不繁琐，但有没有办法更高效呢？让我们写一个小脚本工具来实现这一功能~</p>
+<ol>
+<li>第一步，借助 system_profiler，在 terminal 中输入 指令<code>system_profiler SPUSBDataType</code>，可以获取到当前 mac 上所有 USB 信息，找到你的设备，可以看到对应的 Serial Number</li>
+</ol>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43164536-df20-4501-b8b9-e2596ff50bc7/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/43164536-df20-4501-b8b9-e2596ff50bc7/Untitled.png"></p>
+<ol start="2">
+<li>第二步， 筛选出我们需要的 Serial Number 信息，修改上面的指令<br><code>system_profiler SPUSBDataType | sed -n -E &#39;s/Serial Number: (.+)/\\1/1p&#39;</code>，打印结果如下，可以很轻松的拿到我们需要的设备序列号.<br>[image:27A5CA33-14B0-4406-9486-FD3CBABDB242-369-0000CED9AF7A88B1/744D63EC-0FAE-48B6-A92C-CAC427E8732F.png]</li>
+</ol>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93616423-64d1-4462-b0c5-ca3beff9e30d/Untitled.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/93616423-64d1-4462-b0c5-ca3beff9e30d/Untitled.png"></p>
+<ol start="3">
+<li>第三步，快捷启动。我们不可能每次都敲这么一长串命令，关键也不好记，为了操作方便，我们可以命令加个 alias</li>
+</ol>
+<ul>
+<li>编辑 .bash_profile：<br><code>vim ~/.bash_profile</code></li>
+<li>加入命令别名：<br><code>alias lsusb=&quot;system_profiler SPUSBDataType | sed -n -E &#39;s/Serial Number: (.+)/\\1/1p&#39;</code></li>
+<li>启用配置：<br><code>source ~/.bash_profile</code></li>
+<li>完成，使用命令 lsusb，打印出想要的结果<br><code>lsusb</code></li>
+</ul>
+<p>总结：以上的脚本只是一个小工具，在开发过程中可以编写更多功能的脚本来提升开发效率。比如 system_profiler 并不仅仅只能获取 usb 信息，还有很多其他功能可以去探索。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -395,68 +491,6 @@
 <li>GCD在项目中用了哪些使用场景</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://redpower424.github.io/news/2021/03/03/article10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Redpower">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redpower">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/news/2021/03/03/article10/" class="post-title-link" itemprop="url">article10</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-03 00:54:36" itemprop="dateCreated datePublished" datetime="2021-03-03T00:54:36+08:00">2021-03-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 

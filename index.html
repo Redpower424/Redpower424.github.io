@@ -231,6 +231,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://redpower424.github.io/news/2021/03/22/article9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Redpower">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Redpower">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/news/2021/03/22/article9/" class="post-title-link" itemprop="url">Sandbox Browser</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-03-22 19:00:00 / Modified: 15:24:01" itemprop="dateCreated datePublished" datetime="2021-03-22T19:00:00+08:00">2021-03-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一个沙盒浏览小工具"><a href="#一个沙盒浏览小工具" class="headerlink" title="一个沙盒浏览小工具"></a>一个沙盒浏览小工具</h1><p>在平常开发调试的过程中，经常会需要查看日志文件，我们一般会将日志文件放在 Documents 文件夹下，那么有哪些方式可以查看呢：</p>
+<ol>
+<li>xcode 工具，Windows -&gt; Devices 进入设备管理页面，可以查看 iPhone 上所有 Installed Apps，再通过 Download Container 将 APP 信息下载到 Mac 上，就可以查看你想要的文件。</li>
+<li>通过浏览器打开 APP 的沙盒文件，内置一个 HTTP 服务器，浏览器直接访问 sandbox 目录，这种方式还算方便。</li>
+<li>在 iOS 端集成一段代码，通过摇一摇或者其他方式呼出一个文件浏览工具页面，选中需要的文件，点击直接查看或者通过 Airdrop 分享至 Mac 端查看。</li>
+</ol>
+<p>相比于前两种方式，第三种方案实现简单，体验更顺畅，所以花时间实现做了一个小工具。</p>
+<p>核心方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F; About FileManager</span><br><span class="line">extension WESandboxVC &#123;</span><br><span class="line">    &#x2F;&#x2F;&#x2F; 加载指定路径下文件</span><br><span class="line">    fileprivate func loadPath(filePath: String) &#123;</span><br><span class="line">        DispatchQueue.global().async &#123;</span><br><span class="line">            var files: [WEFileItem] &#x3D; []</span><br><span class="line">            </span><br><span class="line">            var targetPath &#x3D; filePath</span><br><span class="line">            if filePath.count &#x3D;&#x3D; 0 || filePath &#x3D;&#x3D; self.rootPath &#123;</span><br><span class="line">                &#x2F;&#x2F;&#x2F; 进入主文件夹路径</span><br><span class="line">                targetPath &#x3D; self.rootPath</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                &#x2F;&#x2F;&#x2F; 已经进入主文件夹内部，添加一个返回上一层的item</span><br><span class="line">                let item &#x3D; WEFileItem(fileName: &quot;🔙..&quot;, fileType: .backup, filePath: filePath)</span><br><span class="line">                files.append(item)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            var paths: [String] &#x3D; []</span><br><span class="line">            &#x2F;&#x2F;&#x2F; 取出路径下所有子路径</span><br><span class="line">            do &#123;</span><br><span class="line">                paths &#x3D; try FileManager.default.contentsOfDirectory(atPath: targetPath)</span><br><span class="line">            &#125; catch &#123;</span><br><span class="line">                print(&quot;no files exist!!!&quot;)</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            for inlinePath in paths &#123;</span><br><span class="line">                &#x2F;&#x2F;&#x2F; 拼出完整路径</span><br><span class="line">                let fullPath &#x3D; NSString(string: targetPath).appendingPathComponent(inlinePath)</span><br><span class="line">                var isDir: ObjCBool &#x3D; false</span><br><span class="line">                &#x2F;&#x2F;&#x2F; 检查路径是否存在，且是否是文件夹</span><br><span class="line">                if !FileManager.default.fileExists(atPath: fullPath, isDirectory: &amp;isDir) &#123;</span><br><span class="line">                    continue</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                var item &#x3D; WEFileItem(fileName: &quot;&quot;, fileType: .backup, filePath: fullPath)</span><br><span class="line">                if isDir.boolValue &#123;</span><br><span class="line">                    &#x2F;&#x2F;&#x2F; 文件夹</span><br><span class="line">                    item.fileName &#x3D; &quot;📁 &quot; + inlinePath</span><br><span class="line">                    item.fileType &#x3D; .dir</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    &#x2F;&#x2F;&#x2F; 文件</span><br><span class="line">                    item.fileName &#x3D; &quot;📃 &quot; + inlinePath</span><br><span class="line">                    item.fileType &#x3D; .file</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                files.append(item)</span><br><span class="line">            &#125;</span><br><span class="line">            self.fileDatas &#x3D; files</span><br><span class="line">            DispatchQueue.main.async &#123;</span><br><span class="line">                self.tableView.reloadData()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;&#x2F; 调用原生分享</span><br><span class="line">    fileprivate func sharePath(path: String) &#123;</span><br><span class="line">        let url &#x3D; URL(fileURLWithPath: path)</span><br><span class="line">        let objectNeedShare &#x3D; [url]</span><br><span class="line">        </span><br><span class="line">        let controller &#x3D; UIActivityViewController(activityItems: objectNeedShare, applicationActivities: nil)</span><br><span class="line">        if UIDevice.current.model.contains(&quot;iPad&quot;) &#123;</span><br><span class="line">            controller.popoverPresentationController?.sourceView &#x3D; self.view</span><br><span class="line">            controller.popoverPresentationController?.sourceRect &#x3D; CGRect(x: screenWidth * 0.5, y: screenHeight, width: 20, height: 20)</span><br><span class="line">        &#125;</span><br><span class="line">        self.present(controller, animated: true, completion: nil)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只需要添加以下代码，可以通过摇一摇的方式呼出文件浏览器:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) &#123;</span><br><span class="line">     super.motionEnded(motion, with: event)</span><br><span class="line">     #if DEBUG</span><br><span class="line">     WESandboxTool.switchSandbox()</span><br><span class="line">     #endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="Redpower424.github.io">Github地址</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://redpower424.github.io/news/2021/03/09/article10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -490,68 +567,6 @@
 <li>GCD在项目中用了哪些使用场景</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://redpower424.github.io/news/2021/03/03/article9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Redpower">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Redpower">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/news/2021/03/03/article9/" class="post-title-link" itemprop="url">article9</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-03 00:54:32" itemprop="dateCreated datePublished" datetime="2021-03-03T00:54:32+08:00">2021-03-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
       
     </div>
 
